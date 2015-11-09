@@ -1,0 +1,23 @@
+{
+  "name": "niu-course-parser",
+  "version": "1.0.0",
+  "description": "",
+  "main": "retrieve-courses.js",
+  "dependencies": {
+    "jquery": "^2.1.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:niucsie/niu-course-parser.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/niucsie/niu-course-parser/issues"
+  },
+  "homepage": "https://github.com/niucsie/niu-course-parser"
+}

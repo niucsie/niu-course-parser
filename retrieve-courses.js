@@ -1,7 +1,11 @@
 var casper = require('casper').create({
   verbose: true,
-  logLevel: "debug"
+  logLevel: "debug",
+  clientScripts: [
+    "node_modules/jquery/dist/jquery.min.js"
+  ]
 });
+
 var SESSION_URL = "http://acade.niu.edu.tw/NIU/outside.aspx?mainPage=LwBBAHAAcABsAGkAYwBhAHQAaQBvAG4ALwBUAEsARQAvAFAAUgBHAC8AUABSAEcAMQAxADAAMABfADAAMQAuAGEAcwBwAHgAPwBhAHkAZQBhAHIAcwBtAHMAPQAxADAANAAxAA==";
 var URL = "https://acade.niu.edu.tw/NIU/Application/TKE/PRG/PRG1100_01.aspx?ayearsms=1041";
 
@@ -14,7 +18,12 @@ casper.start(SESSION_URL).thenOpen(URL, function(){
 casper.waitForSelector("#DataGrid", function(){
   this.log("Wait for query results success");
 
-  this.echo(this.getHTML());
+  // inject JavaScript expression to remote page
+  var results = this.evaluate(function(){
+    return $("#DataGrid").html();
+  });
+
+  this.log(results);
 }, null, 60000);
 
 casper.run();
