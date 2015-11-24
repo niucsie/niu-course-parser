@@ -20,10 +20,24 @@ casper.waitForSelector("#DataGrid", function(){
 
   // inject JavaScript expression to remote page
   var results = this.evaluate(function(){
-    return $("#DataGrid").html();
+    $("#DataGrid > tbody > tr.mtbGreenBg").remove();
+
+    var sn = $("#DataGrid > tbody > tr:nth-child(1) > td:nth-child(3)").html();
+    var chineseName = $("#DataGrid > tbody > tr:nth-child(1) > td:nth-child(4)").html();
+    var depName = $("#DataGrid > tbody > tr:nth-child(1) > td:nth-child(5)").html();
+    var grade = $("#DataGrid > tbody > tr:nth-child(1) > td:nth-child(6)").html();
+    var className = $("#DataGrid > tbody > tr:nth-child(1) > td:nth-child(7)").html();
+
+    return {
+      "sn": sn,
+      "chineseName": chineseName,
+      "depName": depName,
+      "grade": grade,
+      "className": className
+    };
   });
 
-  this.log(results);
+  this.log(JSON.stringify(results));
 }, null, 60000);
 
 casper.run();
